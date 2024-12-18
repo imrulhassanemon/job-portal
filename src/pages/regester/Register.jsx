@@ -1,42 +1,41 @@
 import Lottie from "lottie-react";
-import lotteedata from '../../../public/lottie/register.json'
+import lotteedata from "../../../public/lottie/register.json";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import SocialLogin from "../shared/SocialLogin";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
 
-    const {createUser} = useContext(AuthContext)
+  const handelRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const password = form.password.value;
+    const email = form.email.value;
+    console.log(password, email);
 
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
-
-    const handelRegister =  (e) => {
-        e.preventDefault()
-        const form = e.target;
-        const password = form.password.value;
-        const email = form.email.value;
-        console.log(password, email);
-
-        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-
-        if(!passwordRegex.test(password)){
-           return toast.error('insart 6 character pass with 1 capatal and small letter and 1 number')
-        }
-
-        createUser(email, password)
-        .then(res => {
-          Swal.fire({
-            title: "User Created!",
-            text: "User Created Successfully!",
-            icon: "success"
-          });
-        })
-        .catch(error => {
-            console.log(error.message);
-        })
-
+    if (!passwordRegex.test(password)) {
+      return toast.error(
+        "insart 6 character pass with 1 capatal and small letter and 1 number"
+      );
     }
+
+    createUser(email, password)
+      .then((res) => {
+        Swal.fire({
+          title: "User Created!",
+          text: "User Created Successfully!",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <div>
@@ -81,6 +80,8 @@ const Register = () => {
                 <button className="btn btn-primary">Register</button>
               </div>
             </form>
+            <div className="divider">OR</div>
+            <div><SocialLogin></SocialLogin></div>
           </div>
         </div>
       </div>
