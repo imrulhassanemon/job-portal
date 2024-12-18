@@ -1,42 +1,34 @@
 import Lottie from "lottie-react";
-import lotteedata from '../../../public/lottie/register.json'
+import lotteedata from '../../../public/lottie/login.json'
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-const Register = () => {
+const SignIn = () => {
 
-    const {createUser} = useContext(AuthContext)
+    const {signInUser} = useContext(AuthContext)
 
-
-
-    const handelRegister =  (e) => {
-        e.preventDefault()
+    const handelSignIn = (e) => {
+        e.preventDefault()  
         const form = e.target;
-        const password = form.password.value;
         const email = form.email.value;
-        console.log(password, email);
-
-        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-
-        if(!passwordRegex.test(password)){
-           return toast.error('insart 6 character pass with 1 capatal and small letter and 1 number')
-        }
-
-        createUser(email, password)
+        const password = form.password.value;
+        console.log(email, password);
+        
+        signInUser(email, password)
         .then(res => {
           Swal.fire({
-            title: "User Created!",
-            text: "User Created Successfully!",
+            title: "Good job!",
+            text: "You are logged in successfully!",
             icon: "success"
           });
         })
         .catch(error => {
-            console.log(error.message);
+            console.log(error);
         })
 
     }
+
 
   return (
     <div>
@@ -46,8 +38,8 @@ const Register = () => {
             <Lottie animationData={lotteedata}></Lottie>
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <h1 className="text-5xl font-bold">Register Now!</h1>
-            <form onSubmit={handelRegister} className="card-body">
+            <h1 className="text-5xl font-bold">Login Now!</h1>
+            <form onSubmit={handelSignIn} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -78,7 +70,7 @@ const Register = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button className="btn btn-primary">Login</button>
               </div>
             </form>
           </div>
@@ -88,4 +80,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignIn;
