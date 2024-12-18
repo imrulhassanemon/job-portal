@@ -4,7 +4,7 @@ import Footer from "../shared/Footer";
 
 const MinLayout = () => {
     return (
-        <div className="max-w-7xl mx-auto border border-red-600">
+        <div className="max-w-7xl mx-auto ">
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
