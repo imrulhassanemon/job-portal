@@ -3,10 +3,17 @@ import lotteedata from '../../../public/lottie/login.json'
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
 
-    const {signInUser} = useContext(AuthContext)
+    const {signInUser, signInWithGoogle} = useContext(AuthContext)
+
+    const location = useLocation()
+    const navigate = useNavigate()
+    console.log(location);
+
+    const form = location.state || '/';
 
     const handelSignIn = (e) => {
         e.preventDefault()  
@@ -22,11 +29,18 @@ const SignIn = () => {
             text: "You are logged in successfully!",
             icon: "success"
           });
+          navigate(form)
         })
         .catch(error => {
             console.log(error);
         })
 
+    }
+
+    const signWithGoogle =() =>{
+      
+      signInWithGoogle()
+      navigate(form)
     }
 
 
@@ -73,6 +87,10 @@ const SignIn = () => {
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
+            <div className="divider">OR</div>
+            <div>
+              <button onClick={signWithGoogle} className="btn">Google Login</button>
+            </div>
           </div>
         </div>
       </div>
