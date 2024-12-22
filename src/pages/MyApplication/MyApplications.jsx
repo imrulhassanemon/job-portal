@@ -6,19 +6,18 @@ const MyApplications = () => {
   const { user } = useAuth();
   
   const [jobs, setJobs] = useState([]);
-  const [remaining, setRemaining] = useState([...jobs])
 
   const remamin = [...jobs]
-  console.log(remaining);
+  console.log(remamin);
 
   useEffect(() => {
     fetch(`http://localhost:3000/job-application?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setJobs(data);
+        console.log(data);
       });
-  }, [user.email]);
+  }, [user.email, jobs.length ]);
   console.log(Array.isArray(jobs));
 
   const handelDelete = (_id) => {
@@ -28,7 +27,10 @@ const MyApplications = () => {
     })
     .then(res => res.json())
     .then(data => {
-        setRemaining(data)
+      console.log(data);
+        // setRemaining(data)
+        const remaining = jobs.filter(job => job._id !== _id)
+        setJobs(remaining)
     })
 
   }
@@ -54,7 +56,7 @@ const MyApplications = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {jobs.map((job, i) => (
+            {remamin.map((job, i) => (
               <tr key={i}>
                 <th>
                   <label>

@@ -1,9 +1,12 @@
 const Addjob = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
-    const fromData = new FormData(e.target);
-    const data = Object.fromEntries(fromData.entries());
-    console.log(data);
+    // const fromData = new FormData(e.target);
+    // const data = Object.fromEntries(fromData.entries());
+    // console.log(data);
+
+    const 
+
   };
 
   return (
@@ -22,25 +25,12 @@ const Addjob = () => {
             name="title"
           />
         </div>
-        {/* job location  */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Job Location</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Job Location"
-            className="input input-bordered"
-            required
-            name="location"
-          />
-        </div>
         {/* job type  */}
         <div className="form-control">
           <label className="label">
             <span className="label-text">Job Type</span>
           </label>
-          <select className="select select-ghost w-full ">
+          <select className="select select-ghost w-full " name="type" required>
             <option disabled selected>
               Pick a job type
             </option>
@@ -54,7 +44,7 @@ const Addjob = () => {
           <label className="label">
             <span className="label-text">Job Field</span>
           </label>
-          <select className="select select-ghost w-full ">
+          <select className="select select-ghost w-full " name="category">
             <option disabled selected>
               Pick a job Field
             </option>
@@ -76,7 +66,7 @@ const Addjob = () => {
               placeholder="Min"
               className="input input-bordered"
               required
-              name="location"
+              name="salaryrangemin"
             />
           </div>
           <div className="form-control">
@@ -88,12 +78,19 @@ const Addjob = () => {
               placeholder="Max" 
               className="input input-bordered"
               required
-              name="location"
+              name="salaryrangemax"
             />
           </div>
+          <select className="select select-ghost w-full " name="currency" required>
+            <option disabled selected>
+              Currency
+            </option>
+            <option>BDT</option>
+            <option>USD</option>
+            <option>INR</option>
+            
+          </select>
         </div>
-
-        {/* description  */}
         <div className="form-control">
           <label className="label">
             <span className="label-text">Job Location</span>
@@ -104,6 +101,96 @@ const Addjob = () => {
             className="input input-bordered"
             required
             name="location"
+          />
+        </div>
+        {/* job Description  */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Job Description</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Job Description"
+            className="input input-bordered"
+            required
+            name="description"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Company Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Company Name"
+            className="input input-bordered"
+            required
+            name="companyname"
+          />
+        </div>
+        {/* requrements  */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Job Requirement</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Put Each Requrirement in a new line"
+            className="input input-bordered"
+            required
+            name="requrement"
+          />
+        </div>
+        {/* responsibilitis  */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Job Responsibilitis</span>
+          </label>
+          <textarea
+            type="text"
+            placeholder="Put Each Requrirement in a new line"
+            className="input input-bordered"
+            required
+            name="responsibilitis"
+          />
+        </div>
+        {/* hr name */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Hr Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Write Hr name"
+            className="input input-bordered"
+            required
+            name="hrname"
+          />
+        </div>
+        {/* hr email  */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Write Hr email</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Write Hr email"
+            className="input input-bordered"
+            required
+            name="hremail"
+          />
+        </div>
+        {/* logo URL */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Logo URL</span>
+          </label>
+          <input
+            type="url"
+            placeholder="Logo url"
+            className="input input-bordered"
+            required
+            name="logo"
           />
         </div>
 
