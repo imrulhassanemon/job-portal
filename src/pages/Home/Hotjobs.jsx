@@ -15,7 +15,6 @@ const Hotjobs = () => {
         console.log(error);
       });
   }, []);
-  console.log(jobs._id);
 
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">

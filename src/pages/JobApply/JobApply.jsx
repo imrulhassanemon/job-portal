@@ -34,7 +34,6 @@ const JobApply = () => {
     } )
     .then(res => res.json())
     .then(data => {
-
         Swal.fire({
           position:'center',
           icon: 'success',
@@ -42,8 +41,7 @@ const JobApply = () => {
           showConfirmButton: false,
           timer:1700
         })
-        // navigate('/mypostedjobs')
-      console.log(data);
+        navigate('/myapplications')
     })
 
   }

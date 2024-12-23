@@ -18,7 +18,7 @@ const Addjob = () => {
     const { min, max, currency, ...newJobs } = initialData;
     console.log(newJobs);
     newJobs.salaryRange = { min, max, currency };
-    newJobs.responsibilitis = newJobs.responsibilitis.split("\n");
+    newJobs.responsibilities = newJobs.responsibilities.split("\n");
     console.log(newJobs);
 
     fetch("http://localhost:3000/jobs", {
@@ -61,7 +61,7 @@ const Addjob = () => {
           <label className="label">
             <span className="label-text">Job Type</span>
           </label>
-          <select className="select select-ghost w-full " name="type" required>
+          <select className="select select-ghost w-full " name="jobType" required>
             <option disabled selected>
               Pick a job type
             </option>
@@ -178,14 +178,14 @@ const Addjob = () => {
         {/* responsibilitis  */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Job Responsibilitis</span>
+            <span className="label-text">Job Responsibilities</span>
           </label>
           <textarea
             type="text"
             placeholder="Put Each Requrirement in a new line"
             className="input input-bordered"
             required
-            name="responsibilitis"
+            name="responsibilities"
           />
         </div>
         {/* hr name */}
@@ -199,7 +199,7 @@ const Addjob = () => {
             placeholder="Write Hr name"
             className="input input-bordered"
             required
-            name="hrname"
+            name="hr_name"
           />
         </div>
         {/* hr email  */}
@@ -213,7 +213,7 @@ const Addjob = () => {
             placeholder="Write Hr email"
             className="input input-bordered"
             required
-            name="hremail"
+            name="hr_email"
           />
         </div>
         {/* applicationdeadline  */}
@@ -227,7 +227,7 @@ const Addjob = () => {
             placeholder="Application Deadline"
             className="input input-bordered"
             required
-            name="deadline"
+            name="applicationDeadline"
           />
         </div>
         {/* logo URL */}
@@ -240,7 +240,7 @@ const Addjob = () => {
             placeholder="Logo url"
             className="input input-bordered"
             required
-            name="logo"
+            name="company_logo"
           />
         </div>
 

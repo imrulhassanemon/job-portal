@@ -9,17 +9,17 @@ const MyApplications = () => {
 
   const remamin = [...jobs]
   console.log(remamin);
-
+  
   useEffect(() => {
     fetch(`http://localhost:3000/job-application?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setJobs(data);
-        console.log(data);
-      });
+    .then((res) => res.json())
+    .then((data) => {
+      setJobs(data);
+      console.log(data);
+    });
   }, [user.email, jobs.length ]);
   console.log(Array.isArray(jobs));
-
+  
   const handelDelete = (_id) => {
     console.log('You can delete');
     fetch(`http://localhost:3000/jobdelete/${_id}`,{
