@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const JobApply = () => {
 
   const {user} = useAuth()
+  const navigate = useNavigate()
 
   const {id} = useParams()
   console.log(id, user.email);
@@ -41,7 +42,7 @@ const JobApply = () => {
           showConfirmButton: false,
           timer:1700
         })
-
+        // navigate('/mypostedjobs')
       console.log(data);
     })
 

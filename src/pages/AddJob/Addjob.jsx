@@ -1,14 +1,45 @@
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
 const Addjob = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate()
+
   const handelSubmit = (e) => {
     e.preventDefault();
     // const fromData = new FormData(e.target);
     // const data = Object.fromEntries(fromData.entries());
     // console.log(data);
 
-    const 
+    const formData = new FormData(e.target);
+    const initialData = Object.fromEntries(formData.entries());
+    console.log(initialData);
+    const { min, max, currency, ...newJobs } = initialData;
+    console.log(newJobs);
+    newJobs.salaryRange = { min, max, currency };
+    newJobs.responsibilitis = newJobs.responsibilitis.split("\n");
+    console.log(newJobs);
 
+    fetch("http://localhost:3000/jobs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newJobs),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        // Show success message
+        Swal.fire({
+          title: "Good job!",
+          text: "You clicked the button!",
+          icon: "success",
+        });
+        navigate('/mypostedjobs')
+      });
   };
-
   return (
     <div>
       <form onSubmit={handelSubmit} className="card-body">
@@ -66,7 +97,7 @@ const Addjob = () => {
               placeholder="Min"
               className="input input-bordered"
               required
-              name="salaryrangemin"
+              name="min"
             />
           </div>
           <div className="form-control">
@@ -75,20 +106,23 @@ const Addjob = () => {
             </label>
             <input
               type="text"
-              placeholder="Max" 
+              placeholder="Max"
               className="input input-bordered"
               required
-              name="salaryrangemax"
+              name="max"
             />
           </div>
-          <select className="select select-ghost w-full " name="currency" required>
+          <select
+            className="select select-ghost w-full "
+            name="currency"
+            required
+          >
             <option disabled selected>
               Currency
             </option>
             <option>BDT</option>
             <option>USD</option>
             <option>INR</option>
-            
           </select>
         </div>
         <div className="form-control">
@@ -160,6 +194,7 @@ const Addjob = () => {
             <span className="label-text">Hr Name</span>
           </label>
           <input
+            // defaultValue={user.email}
             type="text"
             placeholder="Write Hr name"
             className="input input-bordered"
@@ -173,11 +208,26 @@ const Addjob = () => {
             <span className="label-text">Write Hr email</span>
           </label>
           <input
-            type="text"
+            defaultValue={user?.email}
+            type="email"
             placeholder="Write Hr email"
             className="input input-bordered"
             required
             name="hremail"
+          />
+        </div>
+        {/* applicationdeadline  */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Application Deadlien</span>
+          </label>
+          <input
+            // defaultValue={user?.email}
+            type="date"
+            placeholder="Application Deadline"
+            className="input input-bordered"
+            required
+            name="deadline"
           />
         </div>
         {/* logo URL */}

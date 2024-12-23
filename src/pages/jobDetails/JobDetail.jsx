@@ -18,11 +18,13 @@ const JobDetail = () => {
     location,
     salaryRange,
   } = useLoaderData();
+  console.log(requirements);
+  console.log(category);
 
-  const deadline = moment(applicationDeadline).subtract(10, "days").calendar();
-  console.log(deadline);
+  const deadline = moment(applicationDeadline).format("MMM Do YY")
+  // console.log(deadline);
 
-  console.log(applicationDeadline);
+  // console.log(applicationDeadline);
 
   return (
     <div>
@@ -52,7 +54,7 @@ const JobDetail = () => {
               <div>
                 <p className="text-gray-500">Industry</p>
                 <p className="text-gray-700 font-medium">
-                  {requirements.map((req, i) => (
+                  {requirements?.map((req, i) => (
                     <span key={i}>{req}/</span>
                   ))}
                 </p>

@@ -9,14 +9,13 @@ const Hotjobs = () => {
     fetch("http://localhost:3000/jobs")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setJobs(data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  console.log(jobs);
+  console.log(jobs._id);
 
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
@@ -54,7 +53,7 @@ const Hotjobs = () => {
             {/* Skills */}
             <div className="flex flex-wrap gap-2 mb-4">
               {
-                job.requirements.map((r, index) => <span  key={index} className="bg-gray-200 hover:text-blue-400 text-gray-700 text-xs px-3 py-1 rounded-full">
+                job.requirements?.map((r, index) => <span  key={index} className="bg-gray-200 hover:text-blue-400 text-gray-700 text-xs px-3 py-1 rounded-full">
                     {r}
                   </span>)
               }
