@@ -37,7 +37,8 @@ import ViewApplication from "../pages/viewApplication/ViewApplication";
         },
         {
           path: 'viewapplications/:job_id',
-          element:<PrivateRoute><ViewApplication></ViewApplication></PrivateRoute>
+          element:<PrivateRoute><ViewApplication></ViewApplication></PrivateRoute>,
+          loader: ({params}) => fetch(`http://localhost:3000/viewapplications/jobs/${params.job_id}`)
         },
         {
           path:'mypostedjobs',

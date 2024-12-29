@@ -8,7 +8,7 @@ const MypostedJobs = () => {
   // console.log(user.email);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/jobs?email=mollahbusiness23@gmail.com`)
+    fetch(`http://localhost:3000/jobs?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -16,6 +16,7 @@ const MypostedJobs = () => {
       });
   }, [user.email]);
   console.log(user.email);
+  console.log(jobs);
   return (
     <div>
       <h2>my posted jobs : {jobs.length} </h2>
@@ -33,7 +34,7 @@ const MypostedJobs = () => {
           <tbody>
             {/* row 1 */}
             {
-                jobs.map(job => <tr>
+                jobs.map(job => <tr key={job._id}>
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
@@ -59,7 +60,7 @@ const MypostedJobs = () => {
                     </td>
                     <td>{job.applicationCount}</td>
                     <th>
-                      <Link to={'/viewapplications'}><button className="btn btn-ghost btn-xs">View Jobs</button></Link>
+                      <Link to={`/viewapplications/${job._id}`}><button className="btn btn-ghost btn-link btn-xs">View Jobs</button></Link>
                     </th>
                   </tr>)
             }
