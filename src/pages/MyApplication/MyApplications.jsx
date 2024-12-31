@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { createCookieSessionStorage } from "react-router-dom";
+import axios from "axios";
 
 const MyApplications = () => {
   const { user } = useAuth();
@@ -11,13 +12,25 @@ const MyApplications = () => {
   console.log(remamin);
   
   useEffect(() => {
-    fetch(`http://localhost:3000/job-application?email=${user.email}`)
-    .then((res) => res.json())
-    .then((data) => {
-      setJobs(data);
-      console.log(data);
-    });
-  }, [user.email, jobs.length ]);
+    // fetch(`http://localhost:3000/job-application?email=${user.email}`)
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   setJobs(data);
+    //   console.log(data);
+    // });
+
+    
+
+    // axios.get(`http://localhost:3000/job-application?email=${user.email}`, {withCredentials: true})
+    // .then(res => setJobs(res.data))
+    // axios.get(`http://localhost:3000/job-application?email=${user.email}`, {withCredentials:true})
+    // .then(res => setJobs(res.data))
+    axios.get(`http://localhost:3000/job-application?email=${user.email}`, {withCredentials: true})
+    .then(res => {
+      setJobs(res.data)
+      console.log(res.data);
+    })
+  }, [user.email,]);
   console.log(Array.isArray(jobs));
   
   const handelDelete = (_id) => {
